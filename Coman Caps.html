@@ -1,0 +1,818 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coman Caps - Gorras Retro Style</title>
+    <style>
+        /* Estilos base inspirados en videojuegos retro de béisbol */
+        body {
+            background-color: #0E0060;
+            font-family: 'Press Start 2P', monospace;
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Importación de fuente retro */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        /* Cabecera con estilo de videojuego */
+        header {
+            background-color: #132e82;
+            padding: 20px;
+            border-bottom: 8px solid #ffffff;
+            position: relative;
+        }
+
+        /* Contenedor para el logo */
+        .logo-container {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            background-color: #132e82; /* Color de fondo que combina con el logo */
+            border: 4px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 10px; /* Bordes redondeados para mejorar la presentación */
+        }
+        
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain; /* Asegura que la imagen se ajuste correctamente */
+        }
+
+        /* Área principal */
+        .stadium {
+            background-color: #1c46c7;
+            min-height: 500px;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        /* Campo de béisbol estilizado */
+        .field {
+            background-color: #116611;
+            width: 90%;
+            height: 400px;
+            margin: 0 auto;
+            border-radius: 50% 50% 0 0;
+            border: 8px solid #ffffff;
+            position: relative;
+            top: 20px;
+            overflow: hidden;
+        }
+
+        /* Elementos animados para el campo de béisbol */
+        .baseball-player {
+            width: 32px;
+            height: 48px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGTSURBVFiF7ZaxTsMwEIa/a1MqOlWwwAALYoQJeAcegLfgKXgQ3gFGxIBaqRMbUKkUKVQ3h8EmDXbcpE0LQv1JluJcfOf/fL47O1jwv9EAToErodcG3QawBC4NvTboClgCQ6Mv9QaYAyfAu/gbOg2gA9w5PgOhC+BA+OmYQg3gBVhJpxNvTVyL4jPgVBPM+nrGVGkAb0BLrH+FH7FpRKUWxgf0B52YdhN4BO7F+q00uEugr8TRxjZZn0dCF8btAm+Kj8CxEqMY8ZwFzymN0hWOxI+eVGBDpWMKFrQcD7bUIfYDZznI+yT70JL/4+ZKgWKZi6VYRYFbJY5irGP2ZvK9JDaLAjfjlIqMSYNLRIRmf6DZL1OgUsUaRanWWCkQ04IhPytdRmNSE38VuWvCVdVzGPNUYDHPcnSYPD8N8hbT9FEsCswc4YK5p7o3UbBvpbcR36EoULVaGhT+TFdMiR/sSYE5Mcsqgavnlsz7UFsKl5nJY3FIcqNpXoiZtS8BNOTeQPtP1mFMRY2xvnPw8AkNxTgz9wn9VwAAAABJRU5ErkJggg==');
+            position: absolute;
+            animation: run 15s infinite linear;
+        }
+
+        .baseball {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            animation: fly 8s infinite ease-out;
+        }
+
+        /* Homerun animation */
+        @keyframes run {
+            0% { left: 10%; top: 70%; transform: scaleX(1); }
+            25% { left: 30%; top: 70%; transform: scaleX(1); }
+            30% { left: 30%; top: 68%; transform: scaleX(1); }
+            35% { left: 30%; top: 70%; transform: scaleX(1); }
+            65% { left: 85%; top: 70%; transform: scaleX(1); }
+            70% { left: 85%; top: 68%; transform: scaleX(1); }
+            75% { left: 85%; top: 70%; transform: scaleX(1); }
+            76% { transform: scaleX(-1); }
+            100% { left: 10%; top: 70%; transform: scaleX(-1); }
+        }
+
+        @keyframes fly {
+            0% { left: 30%; top: 70%; opacity: 0; }
+            10% { left: 30%; top: 70%; opacity: 1; }
+            70% { left: 85%; top: 20%; opacity: 1; }
+            80% { left: 90%; top: 25%; opacity: 0; }
+            100% { left: 30%; top: 70%; opacity: 0; }
+        }
+
+        /* Animación de celebración */
+        .celebration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAG/SURBVFiF7ZexTsNADIa/OEWqxJSJDStMPAIjM2JA4il4AR6BgZ0nYGdkQKpUiQExFRapEwMkOYakFKJcGtJcA5X6S5Yi2/H5t+Oz7YQj/hfqwJXQNdDUcKyQUXMAtIBb4E3oEzB09K3mPjAFukBP+ArYaUTNKTAGvoHvnG7F5x6Ys+HCXKM98S+SrCvX6MkCTW/AC4TkAIgc/RloOvGKuUZzYCL0HmjItSrZ9D2NdqKlCXgU+pykjrlyPiuaGRb3Rn1gLdfuwYfQtRP3lGy6KfQK+AImQsOC2NthYDHDfDH9fwJ+hNZ9zHPeA6AiZlS2MfAzZCrI+8CuMVjHpFPy7JnZGnUVxrz+PZfACLgBumI2EFoLYl4FB8AZ8CrGHZy6LnE4kLV6gMg+8WWBPAZ+gc8gJo9+EtVYrG0YIhzTYIzasDCMHC3qgbuSjBmV1HKhsLIHQzpSK2oY6khDYmg/DGNBD6L4JpuMZRvPNQWnHBx6TW5qTJ7jPPAq2PQ0Wm4n+Bb/UJplWXwQvzuXdCHbTZFIrVrFSPY4EqoItzVlDZe+DZnKDPGMJLtD70n6vS/yZpVi6PF+TyQWFTzvnbZwhCXwB8NI1sfMKUmxAAAAAElFTkSuQmCC');
+            opacity: 0;
+            animation: celebrate 6s infinite;
+        }
+
+        @keyframes celebrate {
+            0% { opacity: 0; transform: scale(0.5); }
+            5% { opacity: 0; transform: scale(0.5); }
+            10% { opacity: 1; transform: scale(1); }
+            20% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+            30% { opacity: 1; transform: scale(1) rotate(-15deg); }
+            40% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+            50% { opacity: 1; transform: scale(1) rotate(-15deg); }
+            60% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 0; transform: scale(0.5); }
+        }
+
+        /* Marcador de estilo retro */
+        .scoreboard {
+            background-color: #000000;
+            width: 60%;
+            margin: 0 auto 30px auto;
+            padding: 15px;
+            border: 8px solid #1c46c7;
+            border-radius: 10px;
+            box-shadow: 0 0 0 4px white;
+        }
+
+        .scoreboard h1 {
+            font-size: 2.5em;
+            margin: 0;
+            letter-spacing: 5px;
+            color: #ffffff;
+            text-shadow: 2px 2px 0 #1c46c7;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 0 #1c46c7; }
+            to { text-shadow: 0 0 10px #5d7eff, 0 0 20px #1c46c7; }
+        }
+
+        /* Navegación principal */
+        nav.main-nav {
+            background-color: #000000;
+            padding: 15px;
+            margin: 20px auto;
+            width: 80%;
+            border: 4px solid #ffffff;
+        }
+
+        nav.main-nav a {
+            color: #ffffff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 8px 15px;
+            background-color: #132e82;
+            border: 3px solid #ffffff;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        nav.main-nav a:hover {
+            background-color: #ffffff;
+            color: #132e82;
+            transform: scale(1.1);
+        }
+
+        /* Secciones de catálogo */
+        .catalog-section {
+            margin: 40px auto;
+            width: 90%;
+            background-color: #132e82;
+            padding: 20px;
+            border: 4px solid #ffffff;
+        }
+
+        .catalog-section h2 {
+            background-color: #000000;
+            padding: 10px;
+            margin-top: 0;
+            border: 3px solid #ffffff;
+            font-size: 1.5em;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+
+        /* Grid para mostrar productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        /* Tarjeta de producto individual */
+        .product-card {
+            background-color: #0E0060;
+            height: 370px;
+            border: 4px solid #ffffff;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Área para imagen de producto */
+        .product-image {
+            width: 250px;
+            height: 250px;
+            background-color: #132e82; /* Placeholder para imagen */
+            border: 3px solid #ffffff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* Área para nombre de producto */
+        .product-name {
+            width: 90%;
+            height: 30px;
+            background-color: #000000;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Área para precio de producto con animación de moneda */
+        .product-price {
+            width: 80px;
+            height: 40px;
+            background-color: #000000;
+            border: 2px solid #ffcc00;
+            color: #ffcc00;
+            text-align: center;
+            padding: 5px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            box-shadow: 0 0 5px #ffcc00;
+            animation: coin-shine 2s infinite;
+        }
+
+        .product-price::before {
+            content: "$";
+            margin-right: 5px;
+        }
+
+        @keyframes coin-shine {
+            0% { box-shadow: 0 0 5px #ffcc00; }
+            50% { box-shadow: 0 0 15px #ffcc00; }
+            100% { box-shadow: 0 0 5px #ffcc00; }
+        }
+
+        /* Animación pixelada para elementos interactivos */
+        @keyframes pixel-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .animated-pixel {
+            animation: pixel-pulse 2s infinite;
+        }
+
+        /* Elementos decorativos de béisbol */
+        .baseball-decoration {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            border: 2px solid #000000;
+            z-index: 10;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Media queries para responsividad */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            .scoreboard {
+                width: 90%;
+            }
+            .scoreboard h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            nav.main-nav a {
+                display: block;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Aquí colocarás tu logo -->
+        <div class="logo-container">
+            <!-- Logo de Coman Cap -->
+            <img src="https://cdn.leonardo.ai/users/09592d11-b46e-4f4b-aa65-3c5c498ea0d6/generations/aec45b3c-8c11-40a5-a928-900960cee5e4/segments/2:4:1/Flux_Dev_Design_a_logo_for_Coman_Cap_a_hat_brand_where_the_let_1.jpg" alt="Logo Coman Cap">
+        </div>
+        <nav class="main-nav">
+            <a href="#standard">59FIFTY STANDARD</a>
+            <a href="#exclusive">59FIFTY EXCLUSIVE</a>
+        </nav>
+    </header>
+
+    <div class="stadium">
+        <div class="scoreboard">
+            <h1>Coman Caps</h1>
+        </div>
+
+        <div class="field">
+            <!-- Elementos animados del campo de béisbol -->
+            <div class="baseball-player" style="top: 70%; left: 10%;"></div>
+            <div class="baseball" style="top: 70%; left: 30%;"></div>
+            
+            <!-- Celebraciones animadas -->
+            <div class="celebration" style="top: 30%; left: 20%;"></div>
+            <div class="celebration" style="top: 40%; left: 70%;"></div>
+            <div class="celebration" style="top: 60%; left: 40%;"></div>
+            
+            <!-- Pelotas decorativas flotantes -->
+            <div class="baseball-decoration" style="top: 50px; left: 30%;"></div>
+            <div class="baseball-decoration" style="bottom: 80px; right: 20%;"></div>
+            <div class="baseball-decoration" style="top: 150px; right: 50%;"></div>
+        </div>
+
+        <!-- Sección para gorras 59FIFTY estándar -->
+        <section id="standard" class="catalog-section">
+            <h2 class="animated-pixel">59FIFTY STANDARD EDITION</h2>
+            <div class="products-grid">
+                <!-- Productos 59FIFTY estándar - 14 PRODUCTOS -->
+                <!-- PRODUCTO 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/13DDC65A-B8A6-46C0-8E4C-66D052F33D79.jpg?v=1736292966&width=1100" alt="Los Angeles Angels Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Los Angeles Angels</p>
+                    </div>
+                    <div class="product-price">
+                        <p>650</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/9D4EA4B9-45B1-425F-8D7A-47985139689A.jpg?v=1735631662&width=1100" alt="Los Angeles Angels White Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Los Angeles Angels White</p>
+                    </div>
+                    <div class="product-price">
+                        <p>600</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/A25A1069-87F5-40B6-B22A-DA0614E28E05.jpg?v=1735631908&width=1100" alt="Houston Astros Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Houston Astros</p>
+                    </div>
+                    <div class="product-price">
+                        <p>600</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/F996685D-FE26-40CF-9617-2B71DDD2F346.jpg?v=1736737453&width=1100" alt="Cap Model">
+                    </div>
+                    <div class="product-name">
+                        <p>NOMBRE MODELO</p>
+                    </div>
+                    <div class="product-price">
+                        <p>600</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/1329488F-C424-42B3-B767-B69B1146F30E.jpg?v=1736736140&width=1100" alt="Atlanta Braves Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Atlanta Braves</p>
+                    </div>
+                    <div class="product-price">
+                        <p>600</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/2629F7D3-E817-43B6-8CB0-3CE45F3A0369.jpg?v=1740508326&width=1100" alt="Atlanta Braves Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Atlanta Braves</p>
+                    </div>
+                    <div class="product-price">
+                        <p>650</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 7 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/BAFD9EE0-1BA0-4FD3-8917-4FE4F46940BF.jpg?v=1737501253&width=1100" alt="Arizona Diamondbacks Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Arizona DIAMONDBACKS</p>
+                    </div>
+                    <div class="product-price">
+                        <p>650</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 8 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/D4135CED-66D2-4050-BB53-6E965BDCA011.webp?v=1735665230&width=1100" alt="Los Angeles Dodgers Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Los Angeles Dodgers</p>
+                    </div>
+                    <div class="product-price">
+                        <p>600</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 9 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/8221395E-7A30-42C6-BEB1-C2A086BE4CD5.webp?v=1735788933&width=1100" alt="Los Angeles Dodgers Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Los Angeles Dodgers</p>
+                    </div>
+                    <div class="product-price">
+                        <p>600</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 10 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/D8F91C9F-66E8-4C95-860C-5276BA39630C.jpg?v=1740777177&width=1100" alt="Pittsburgh Pirates Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Pittsburgh Pirates</p>
+                    </div>
+                    <div class="product-price">
+                        <p>600</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 11 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/CF21D81E-0C02-4A19-9B53-B37D7730A79A.webp?v=1735665437&width=1100" alt="Boston Red Sox Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Boston Red Sox</p>
+                    </div>
+                    <div class="product-price">
+                        <p>600</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 12 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/A0017627-AFE8-41F3-BD77-4264A978DC4B.jpg?v=1735631951&width=1100" alt="Chicago White Sox Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>Chicago White Sox</p>
+                    </div>
+                    <div class="product-price">
+                        <p>650</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 13 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/FDB90273-95FD-4898-AE76-1498CA942270.webp?v=1735851134&width=1100" alt="New York Yankees Clouds Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>New York Yankees Clouds</p>
+                    </div>
+                    <div class="product-price">
+                        <p>600</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 14 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/B0904A27-CC61-4A17-B3C9-8C4F79864787.webp?v=1735847466&width=1100" alt="New York Yankees Floral Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>New York Yankees Floral</p>
+                    </div>
+                    <div class="product-price">
+                        <p>650</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección para gorras 59FIFTY exclusivas -->
+        <section id="exclusive" class="catalog-section">
+            <h2 class="animated-pixel">59FIFTY EXCLUSIVE EDITION</h2>
+            <div class="products-grid">
+                <!-- Productos 59FIFTY exclusivos - 17 PRODUCTOS -->
+                <!-- PRODUCTO 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/576BE40E-D598-46F2-9369-56745B7797F3.jpg?v=1743791901&width=1100" alt="NZMU X NEW ERA NY Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>NZMU X NEW ERA NY</p>
+                    </div>
+                    <div class="product-price">
+                        <p>750</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/A0FCF7EC-E194-461F-85FE-4B709737B87C.jpg?v=1740517115&width=1100" alt="NZMU X New Era LA Cap">
+                    </div>
+                    <div class="product-name">
+                        <p>NZMU X New Era LA</p>
+                    </div>
+                    <div class="product-price">
+                        <p>750</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/4133BFE7-37C1-4DF3-8AAA-299A925E7B14.jpg?v=1737489774&width=1100" alt="NZMU X New Era LA Cap">
+                   </div>
+                    <div class="product-name">
+                        <p>NZMU X New Era LA</p>
+                    </div>
+                    <div class="product-price">
+                        <p>800</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/22CB9AB1-98CF-49BD-890A-FA842323D7F5.jpg?v=1741538509&width=1100" alt="BORN X RAICE X LA">
+                    </div>
+                    <div class="product-name">
+                        <p>BORN X RAICE X LA</p>
+                    </div>
+                    <div class="product-price">
+                        <p>750</p>
+                    </div>
+                </div>
+                <!-- PRODUCTO 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/15AE7483-60A6-457A-85A3-7C2E28E1388D.jpg?v=1740507181&width=1100">
+                    </div>
+                    <div class="product-name">
+                        <p>BORN X RAICE X LA</p>
+                    </div>
+                    <div class="product-price">
+                        <p>750</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/7861639D-3446-4C77-A10E-DB7D1F5B2C3D.jpg?v=1735791245&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>John Stan x Chicago</p>
+                    </div>
+                    <div class="product-price">
+                        <p>800</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 7 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://dimcaps.com.mx/cdn/shop/files/9A562445-4F39-43A3-A742-0F1F0CB1F091.jpg?v=1735791176&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>John Stan x LA</p>
+                    </div>
+                    <div class="product-price">
+                        <p>800</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 8 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/FF120662-5CC6-49DE-AA96-04E43320445E.jpg?v=1745006996&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>John Stan SnapBack</p>
+                    </div>
+                    <div class="product-price">
+                        <p>800</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 9 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/5297B915-7F6F-4A79-851E-97D2F162D13E.jpg?v=1735791213&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>John Stan Nationals</p>
+                    </div>
+                    <div class="product-price">
+                        <p>800</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 10 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/FBC7CBA7-3285-4CAD-8DB3-464226113C7B.jpg?v=1735791316&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>John Stan NY</p>
+                    </div>
+                    <div class="product-price">
+                        <p>800</p>
+                    </div>
+                </div> 
+
+                <!-- PRODUCTO 11 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/1AB95647-40E0-454A-B313-AD5F8AEA3AEC.jpg?v=1736268399&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>New Era X Junior H</p>
+                    </div>
+                    <div class="product-price">
+                        <p>650</p>
+                    </div>
+
+                </div>
+                 <!-- PRODUCTO 12 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/8458FE7A-D4D4-44CE-959A-D890CAD8355B.jpg?v=1736296381&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>New Era X Junior H</p>
+                    </div>
+                    <div class="product-price">
+                        <p>650</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 13 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/3D6F29C6-D68A-43D4-B2CB-EDF165B7E309.jpg?v=1741233905&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>New Era X Junior H</p>
+                    </div>
+                    <div class="product-price">
+                        <p>650</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 14 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/E5BBA894-6E6C-40A5-B1E8-826CE65151CC.webp?v=1735848488&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>ALL OVER</p>
+                    </div>
+                    <div class="product-price">
+                        <p>700</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 15 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/27C53944-CBE9-45AF-8911-B27B5D0BEDBE.jpg?v=1735848716&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>ALL OVER WHITE</p>
+                    </div>
+                    <div class="product-price">
+                        <p>700</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 16 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/64924FAC-146D-4883-856B-5252DBC1AC1F.jpg?v=1741537106&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>ALL OVER WHITE 2</p>
+                    </div>
+                    <div class="product-price">
+                        <p>700</p>
+                    </div>
+                </div>
+                
+                <!-- PRODUCTO 17 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src= "https://dimcaps.com.mx/cdn/shop/files/B85F2B36-F728-4A71-8D84-92039F8108BE.jpg?v=1735587074&width=1100" >
+                    </div>
+                    <div class="product-name">
+                        <p>SUPREME ALL OVER</p>
+                    </div>
+                    <div class="product-price">
+                        <p>700</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Coman Cap - Todos los derechos reservados</p>
+        <p>Inspirado en la estética retro de videojuegos de béisbol</p>
+    </footer>
+
+    <script>
+        // Script simple para añadir interactividad
+        document.addEventListener('DOMContentLoaded', function() {
+            // Añadir efectos de sonido retro al hacer clic en los enlaces (opcional)
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Aquí podrías añadir un sonido retro si lo deseas
+                    console.log('¡Click retro!');
+                });
+            });
+        });
+    </script>
+</body>
